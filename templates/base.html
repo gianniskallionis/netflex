@@ -1,0 +1,90 @@
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>{% block title %}Netflex{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a href="{{ url_for('homepage') }}">
+                    <img src="{{ url_for('static', filename='assets/images/logo.png') }}" alt="logo" width=50rem;>
+                </a>
+                <a class="navbar-brand" href="#">NetFlex</a>
+            
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link 
+                            {% if request.path == '/' %}active{% endif %}"
+                            {% if request.path == '/' %}aria-current="page"{% endif %} href="{{ url_for('homepage') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link
+                            {% if request.path == '/items' %}active{% endif %}"
+                            {% if request.path == '/items' %}aria-current="page"{% endif %}  href="{{ url_for('items') }}">Athletes</a>
+                        </li>
+                    </ul>   
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <div class="container-fluid px-4 py-4">
+        <div class="row row-cols-1 row-cols-md-5 g-3" id="athletes-container">
+
+        </div>
+    </div>
+
+    <footer class="mt-5 py-4 border-top">
+        <div class="container">
+            <p class="text-center text-body-secondary fw-semibold mb-4">👥 Team</p>
+            
+            <div class="row justify-content-center g-3 mb-4">
+                <div class="col-6 col-md-3 text-center">
+                    <img src="{{ url_for('static', filename='assets/images/giannis.jpg') }}" 
+                        class="rounded-circle mb-2" width="70" height="70" style="object-fit:cover;">
+                    <p class="mb-0 small fw-semibold">Giannis Kallionakis</p>
+                    <p class="text-body-secondary" style="font-size:0.75rem;">Fullstack/api</p>
+                </div>
+                <div class="col-6 col-md-3 text-center">
+                    <img src="{{ url_for('static', filename='assets/images/nikos.jpg') }}" 
+                        class="rounded-circle mb-2" width="70" height="70" style="object-fit:cover;">
+                    <p class="mb-0 small fw-semibold">Nikos Psomadakis</p>
+                    <p class="text-body-secondary" style="font-size:0.75rem;">Fullstack/Database</p>
+                </div>
+                <div class="col-6 col-md-3 text-center">
+                    <img src="{{ url_for('static', filename='assets/images/antonis.jpg') }}" 
+                        class="rounded-circle mb-2" width="70" height="70" style="object-fit:cover;">
+                    <p class="mb-0 small fw-semibold">Antonis Gardikiotis</p>
+                    <p class="text-body-secondary" style="font-size:0.75rem;">Frontend/Templates</p>
+                </div>
+                <div class="col-6 col-md-3 text-center">
+                    <img src="{{ url_for('static', filename='assets/images/nikolai.jpg') }}" 
+                        class="rounded-circle mb-2" width="70" height="70" style="object-fit:cover;">
+                    <p class="mb-0 small fw-semibold">Nikolai Zernov</p>
+                    <p class="text-body-secondary" style="font-size:0.75rem;">Frontend/UI-UX</p>
+                </div>
+            </div>
+
+            <ul class="nav justify-content-center gap-2">
+                <li class="nav-item"><a href="{{ url_for('homepage') }}" class="btn btn-outline-secondary px-4">Homepage</a></li>
+                <li class="nav-item"><a href="{{ url_for('items') }}" class="btn btn-outline-secondary px-4">Athletes</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='items.js') }}"></script>
+</body>
+</html>
